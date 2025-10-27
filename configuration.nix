@@ -23,7 +23,7 @@
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "the-brain"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -95,7 +95,15 @@
     packages = with pkgs; [
     #  thunderbird
     ];
+    openssh = {
+      authorizedKeys = {
+        keys = [
+          "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDgQDqVl7DUf5l8SR/QnurZCY4DPDQAcgSVEUsWgQxQXGr5X29+EyKrfE+6AFuevD9mRFuJzPXd9I7AbJ4AjRjYG93/JMpzYRxJm2/534+BwzsOQbDMs0iVjYFEhTSlDnQFMA4DX/YoqMNukK9CC9xu2kiaIFqPe4ZEVTcUDxTiaoVQmP8wUWvrjY6k82i/kFKAs4AjI7JAzIwqj26wIP3bQUmPi+W+ZGSJx2hSQvbEJ+bqzj0rmk8Vud2RTExhdtVpiXv0CBzEWqSO+TPTgNu35lLGqwLREuKAfglcmGX0kRGAvFbdZE5G1F4D599FDdnjOH2btN8EEZwpioHUW52gPkroXk4bzI9QsAGmYcVl4wixCFdNhNXvSdFvfg7lqb/tduHXYwEutZDU4m+Gs20/GEZ4TftffzOS6NaecTF/Er/KysISAH8y2U1kpFRT/37LwCeasV05J2oowKtyW/8jFhUKBmdr47i1mGmTM6FpG47Wq5LwOChCIad+lp+BxqE="
+        ];
+      };
+    };
   };
+
 
   # Install firefox.
   programs.firefox.enable = true;
