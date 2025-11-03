@@ -1,13 +1,9 @@
-{pkgs, config, home-manager, dotfiles, ...}:
-{
+{ pkgs, config, home-manager, dotfiles, ... }: {
   users.users.dseymour = {
     isNormalUser = true;
     description = "Daniel Seymour";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      _1password-cli
-      nixfmt-rfc-style
-    ];
+    # packages = with pkgs; [ _1password ];
     openssh = {
       authorizedKeys = {
         keys = [
