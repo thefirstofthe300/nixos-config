@@ -4,7 +4,7 @@
     package = postgresql_17;
     extensions =
       [ postgresql17Packages.vectorchord postgresql17Packages.pgvector ];
-    settings = { shared_preload_libraries = [ "vchord.so" ]; };
+    settings = { shared_preload_libraries = [ "vchord.so" ]; max_connections = 200; };
     ensureDatabases = [
       "synapse"
       "immich"
