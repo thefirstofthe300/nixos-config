@@ -11,7 +11,7 @@
   };
 
   systemd.tmpfiles.rules = [
-    "d /var/lib/tubearchivist/elasticsearch 0755 root root -"
+    "d /var/lib/tubearchivist/elasticsearch 0755 1000 1000 -"
   ];
 
   virtualisation.podman.enable = true;

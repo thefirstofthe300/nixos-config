@@ -15,6 +15,7 @@
       "mautrix-signal"
       "mautrix-gmessages"
       "mautrix-telegram"
+      "paperless"
     ];
     ensureUsers = [
       {
@@ -51,6 +52,10 @@
       }
       {
         name = "mautrix-telegram";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "paperless";
         ensureDBOwnership = true;
       }
     ];
