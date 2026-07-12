@@ -10,6 +10,10 @@
     '';
   };
 
+  systemd.tmpfiles.rules = [
+    "d /var/lib/tubearchivist/elasticsearch 0755 root root -"
+  ];
+
   virtualisation.podman.enable = true;
   virtualisation.oci-containers.backend = "podman";
 
