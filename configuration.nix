@@ -4,6 +4,7 @@
   imports = [
     ./users.nix
     ./postgres.nix
+    ./elasticsearch.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
@@ -35,7 +36,7 @@
   networking = {
     hostName = "the-brain";
     useDHCP = lib.mkDefault true;
-    firewall = { allowedTCPPorts = [ 5432 ]; };
+    firewall = { allowedTCPPorts = [ 5432 9200 ]; };
   };
 
   fileSystems = {

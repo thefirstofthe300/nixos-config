@@ -1,0 +1,10 @@
+keys:
+  - &beefcake age1pj2jjxkflq5463kshykxpqdh6hah45saq5yqdrtch5lu3x2kudqqtpxu8s
+  - &the-brain age1rqx0swqe3c9ff9wz0v90qstnmuz9e9ufplhdez3ensfnwp6vuvwqt5n5e0
+
+creation_rules:
+  - path_regex: secrets/.*\.yaml$
+    key_groups:
+      - age:
+          - *beefcake
+          - *the-brain
