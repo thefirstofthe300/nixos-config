@@ -22,6 +22,7 @@
       "mautrix-gmessages"
       "mautrix-telegram"
       "paperless"
+      "mealie"
     ];
     ensureUsers = [
       {
@@ -62,6 +63,10 @@
       }
       {
         name = "paperless";
+        ensureDBOwnership = true;
+      }
+      {
+        name = "mealie";
         ensureDBOwnership = true;
       }
     ];
