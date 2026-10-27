@@ -4,6 +4,29 @@ let
   retentionDays = 7;
   pg = config.services.postgresql.package;
 in {
+  sops.secrets = {
+    b2_account_id.sopsFile = ./secrets/postgres-backup.yaml;
+    b2_account_key.sopsFile = ./secrets/postgres-backup.yaml;
+    restic_password.sopsFile = ./secrets/postgres-backup.yaml;
+  };
+
+  sops.templates."postgres-backup-b2.env".content = ''
+    B2_ACCOUNT_ID=''${config.sops.placeholder."b2_account_id"}
+    B2_ACCOUNT_KEY=''${config.sops.placeholder."b2_account_key"}
+  '';
+
+  services.restic.backups.postgres-b2 = {
+    repository = "b2:seymour-family-postgres:postgres";
+    passwordFile = config.sops.secrets.restic_password.path;
+    environmentFile = config.sops.templates."postgres-backup-b2.env".path;
+    paths = [ backupDir ];
+    pruneOpts = [ "--keep-daily 14" "--keep-weekly 8" "--keep-monthly 6" ];
+    initialize = true;
+    timerConfig = null;
+  };
+
+  systemd.services.postgresql-dump.onSuccess = [ "restic-backups-postgres-b2.service" ];
+
   systemd.tmpfiles.rules = [ "d ${backupDir} 0700 postgres postgres -" ];
 
   systemd.services.postgresql-dump = {
