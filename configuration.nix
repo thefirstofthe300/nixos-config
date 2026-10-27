@@ -4,6 +4,7 @@
   imports = [
     ./users.nix
     ./postgres.nix
+    ./postgres-backup.nix
     ./elasticsearch.nix
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
