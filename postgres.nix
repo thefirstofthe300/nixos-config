@@ -4,7 +4,13 @@
     package = postgresql_17;
     extensions =
       [ postgresql17Packages.vectorchord postgresql17Packages.pgvector ];
-    settings = { shared_preload_libraries = [ "vchord.so" ]; max_connections = 200; };
+    settings = {
+      shared_preload_libraries = [ "vchord.so" ];
+      max_connections = 200;
+      # 25% of the host's 16GB; elasticsearch on this host uses about 2GB.
+      shared_buffers = "4GB";
+      effective_cache_size = "10GB";
+    };
     ensureDatabases = [
       "synapse"
       "immich"
