@@ -11,8 +11,8 @@ in {
   };
 
   sops.templates."postgres-backup-b2.env".content = ''
-    B2_ACCOUNT_ID=''${config.sops.placeholder."b2_account_id"}
-    B2_ACCOUNT_KEY=''${config.sops.placeholder."b2_account_key"}
+    B2_ACCOUNT_ID=${config.sops.placeholder."b2_account_id"}
+    B2_ACCOUNT_KEY=${config.sops.placeholder."b2_account_key"}
   '';
 
   services.restic.backups.postgres-b2 = {
