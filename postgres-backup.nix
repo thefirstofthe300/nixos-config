@@ -1,7 +1,7 @@
 { config, pkgs, ... }:
 let
   backupDir = "/var/backup/postgresql";
-  retentionDays = 7;
+  retentionDays = 2;
   pg = config.services.postgresql.package;
 in {
   sops.secrets = {
